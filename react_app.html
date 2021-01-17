@@ -13,35 +13,176 @@
     <!-- text/babelによってBabelというコンパイラでコンパイルされる -->
     <script type="text/babel">
     let dom =document.querySelector('#root');
-    let message="新しいメッセージです"
 
-    // const msg = {
+    // ◆◆◆条件分岐◆◆◆
+    // let message_true = "メッセージを表示します";
+    // let message_false = "メッセージはありません";
+
+    // const msg_true = {
     //   fontSize: "20pt",
     //   fontWeight: "bold",
     //   color: "red",
     //   border: "1px solid blue"
     // }
 
-    let printMsg = function(msg, size, color) {
-      const style = {
-        fontSize: size + "pt",
-        fontWeight: '700',
-        color: color,
-        border: "1px solid" + color
-      };
-      return <p style={style}>{msg}</p>;
-    }
+    // const msg_false = {
+    //   fontSize: "16pt",
+    //   fontWeight: "plain",
+    //   color: "white",
+    //   backgroundColor: "blue"
+    // }
 
+    // let flg = false;
     // elの中身は1つのオブジェクトにしなければいけない（理由：renderの引数が一つのため）
     // そのためdivを排除してh2,pだけの表示にしてしまうとエラーになる
-    let el = (
-      <div>
-        {printMsg('firstMessage', 30, '#ddd')}
-        {printMsg('secondMessage', 20, '#aaa')}
-        {printMsg('thirdMessage', 14, '#333')}
-      </div>
-    );
-    ReactDOM.render(el, dom);
+    // let el = (
+    //   <div>
+    //     {flg ?
+    //       <p style={msg_true}>{message_true}</p>
+    //     :
+    //       <p style={msg_false}>{message_false}</p>
+    //     }
+    //   </div>
+    // );
+
+    // ◆◆◆配列によるリストの表示◆◆◆
+    // const list = {
+    //   fontSize: "18pt",
+    //   padding: "5px 50px",
+    // }
+
+    // let data = [
+    //   <li>one</li>,
+    //   <li>two</li>,
+    //   <li>three</li>
+    // ];
+
+    // let el = (
+    //   <div>
+    //     <ul style={list}>
+    //       {data}
+    //     </ul>
+    //   </div>
+    // );
+
+    // ◆◆◆map◆◆◆
+    // const table = {
+    //   fontSize: "16pt",
+    //   padding: "5px 50px",
+    // }
+    // const th = {
+    //   color: 'white',
+    //   backgroundColor: '#006',
+    //   padding: '5px 15px'
+    // }
+    // const td = {
+    //   color: 'black',
+    //   padding: '5px 15px',
+    //   border: '1px solid gray'
+    // }
+    // let data = [
+    //   {name:'Taro', mail:'taro@yamada', age: 45},
+    //   {name:'Hanako', mail:'hanako@flower', age:37},
+    //   {name:'Sachiko', mail:'sachiko@happy', age:29}
+    // ];
+    // let el = (
+    //   <div>
+    //     <table style = {table}>
+    //       <tr>
+    //         <th style={th}>name</th>
+    //         <th style={th}>mail</th>
+    //         <th style={th}>age</th>
+    //       </tr>
+    //       {data.map((value) => (
+    //       <tr>
+    //         <td style={td}>{value.name}</td>
+    //         <td style={td}>{value.mail}</td>
+    //         <td style={td}>{value.age}</td>
+    //       </tr>
+    //       ))}
+    //     </table>
+    //   </div>
+    // )
+
+    // ◆◆◆アロー関数◆◆◆
+    // const dfn = {
+    //   fontSize: "20pt",
+    //   padding: "10px"
+    // }
+    // const dt = {
+    //   fontSize: "16pt",
+    //   color: 'white',
+    //   backgroundColor: '#006',
+    //   padding: '10px'
+    // }
+    // const dd = {
+    //   color: 'black',
+    //   padding: '10px'
+    // }
+    // let data = {
+    //   url: 'http://google.com',
+    //   title: 'Google',
+    //   caption:'※googleの検索サイトです'
+    // };
+    // let el = (
+    //   <div>
+    //     {(() =>
+    //       <dl>
+    //         <dt style={dt}><dfn style={dfn}>
+    //           {data.title}
+    //         </dfn></dt>
+    //         <dd style={dd}>
+    //           {data.caption}
+    //         </dd>
+    //         <dd style={dd}>
+    //           <a href={data.url}>※{data.title}</a>
+    //         </dd>
+    //       </dl>
+    //         )()}
+    //   </div>
+    // );
+    // ReactDOM.render(el, dom);
+
+    // ◆◆◆タイマー更新◆◆◆
+    // const p ={
+    //   fontSize: "20pt",
+    //   padding: "10px"
+    // };
+
+    // var counter = 0;
+    // setInterval(() => {
+    //   counter++;
+    //   let el = (
+    //     <div>
+    //       <p style={p}>count: {counter}</p>
+    //     </div>
+    //   );
+    //   ReactDOM.render(el, dom);
+    // }, 1000);
+
+
+    // ◆◆◆クリック更新◆◆◆
+    const p ={
+      fontSize: "20pt",
+      padding: "10px",
+      backgroundColor:'blue',
+      color:"white",
+      cursor: "pointer"
+    };
+
+    var counter = 0;
+    let doAction = (event) => {
+      counter++;
+      let el = (
+        <div>
+          <p onClick={doAction} style={p}>
+            count: {counter}
+          </p>
+        </div>
+      );
+      ReactDOM.render(el, dom);
+    };
+    doAction();
     </script>
 
   </body>
