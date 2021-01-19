@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1>React</h1>
-    <div id="root" onclick="doCount();">wait...</div>
+    <div id="root">wait...</div>
     <!-- text/babelによってBabelというコンパイラでコンパイルされる -->
     <script type="text/babel">
     let dom =document.querySelector('#root');
@@ -162,27 +162,115 @@
 
 
     // ◆◆◆クリック更新◆◆◆
-    const p ={
-      fontSize: "20pt",
+    // const p ={
+    //   fontSize: "20pt",
+    //   padding: "10px",
+    //   backgroundColor:'blue',
+    //   color:"white",
+    //   cursor: "pointer"
+    // };
+
+    // var counter = 0;
+    // let doAction = (event) => {
+    //   counter++;
+    //   let el = (
+    //     <div>
+    //       <p onClick={doAction} style={p}>
+    //         count: {counter}
+    //       </p>
+    //     </div>
+    //   );
+    //   ReactDOM.render(el, dom);
+    // };
+    // doAction();
+
+
+    // ◆◆◆フォーム◆◆◆
+    // const p = {
+    //   fontSize: "20pt",
+    //   padding: "10px"
+    // };
+    // const input = {
+    //   fontSize: "16pt",
+    //   padding: "5px 10px"
+    // }
+    // let message = 'お名前をどうぞ：';
+    // let in_val = '';
+
+    // let doChange = (event) => {
+    //   in_val = event.target.value;
+    //   message = 'こんにちは' + in_val + 'さん';
+    // }
+
+    // let doAction = (event) => {
+    //   let el = (
+    //     <div>
+    //       <p style={p}>{message}</p>
+    //       <div>
+    //         <input type="text" id="input" style={input}
+    //           onChange={doChange} />
+    //         <button onClick={doAction} style={input}>
+    //           Click
+    //         </button>
+    //       </div>
+    //     </div>
+    //   );
+    //   ReactDOM.render(el, dom);
+    // };
+    // doAction();
+
+    // ◆◆◆コンポーネント◆◆◆
+    // const msg1 = {
+    //   fontSize: "20pt",
+    //   padding: "10px",
+    //   border: "double 5px magenta"
+    // };
+
+    // const msg2 = {
+    //   fontSize: "16pt",
+    //   fontWeight: "bold",
+    //   padding: "10px",
+    //   backgroundColor: "cyan"
+    // };
+
+    // function Welcome(props) {
+    //   return <p style={props.style}>Hello, {props.name}</p>
+    // }
+
+    // let el = (
+    //   <div>
+    //     <Welcome name="Taro" style={msg1} />
+    //     <Welcome name="Hanako" style={msg2} />
+    //   </div>
+    // );
+    // ReactDOM.render(el, dom);
+
+
+    // ◆◆◆コンポーネント（計算）◆◆◆
+    const msg = {
+      fontSize: "16pt",
+      fontWeight: "bold",
       padding: "10px",
-      backgroundColor:'blue',
       color:"white",
-      cursor: "pointer"
+      backgroundColor:"darkblue"
     };
 
-    var counter = 0;
-    let doAction = (event) => {
-      counter++;
-      let el = (
-        <div>
-          <p onClick={doAction} style={p}>
-            count: {counter}
-          </p>
-        </div>
-      );
-      ReactDOM.render(el, dom);
-    };
-    doAction();
+    function Calc(props) {
+      let total = 0;
+      for (let i = 1; i <= props.number; i++) {
+        total += i;
+      }
+      return <p style={msg}>1から{props.number}までの合計は、{total}です</p>;
+    }
+
+    let el = (
+      <div>
+        <Calc number="100"/>
+        <Calc number="200"/>
+        <Calc number="300"/>
+      </div>
+    );
+    ReactDOM.render(el, dom);
     </script>
 
   </body>
