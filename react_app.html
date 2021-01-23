@@ -247,27 +247,88 @@
 
 
     // ◆◆◆コンポーネント（計算）◆◆◆
-    const msg = {
-      fontSize: "16pt",
-      fontWeight: "bold",
-      padding: "10px",
-      color:"white",
-      backgroundColor:"darkblue"
-    };
+    // const msg = {
+    //   fontSize: "16pt",
+    //   fontWeight: "bold",
+    //   padding: "10px",
+    //   color:"white",
+    //   backgroundColor:"darkblue"
+    // };
 
-    function Calc(props) {
-      let total = 0;
-      for (let i = 1; i <= props.number; i++) {
-        total += i;
+    // function Calc(props) {
+    //   let total = 0;
+    //   for (let i = 1; i <= props.number; i++) {
+    //     total += i;
+    //   }
+    //   return <p style={msg}>1から{props.number}までの合計は、{total}です</p>;
+    // }
+
+    // let el = (
+    //   <div>
+    //     <Calc number="100"/>
+    //     <Calc number="200"/>
+    //     <Calc number="300"/>
+    //   </div>
+    // );
+    // ReactDOM.render(el, dom);
+
+    // ◆◆◆コンポーネント◆◆◆
+    // const msg = {
+    //   fontSize: "16pt",
+    //   fontWeight: "bold",
+    //   padding: "10px",
+    //   border: "solid 5px yellow"
+    // };
+
+    // class Hello extends React.Component {
+    //   constructor(props) {
+    //     super (props);
+    //   }
+    //   render(){
+    //     return <p style={msg}>Hello</p>;
+    //   }
+    // }
+    // let el = (
+    //   <div>
+    //     <Hello />
+    //   </div>
+    // );
+    // ReactDOM.render(el, dom);
+
+    // ◆◆◆属性を使ったコンポーネント◆◆◆
+    class React extends React.Component {
+      x=0;
+      y=0;
+      width=0;
+      height=0;
+      color="white";
+      style={};
+
+      constructor(props) {
+        super(props);
+        this.x=props.x;
+        this.y=props.y;
+        this.width=props.w;
+        this.height=props.h;
+        this.color=props.c;
+        this.style= {
+          backgroundColor:this.color,
+          position:"absolute",
+          left:this.x + "px",
+          top:this.y + "px",
+          width:this.width + "px",
+          height:this.height + "px"
+        }
       }
-      return <p style={msg}>1から{props.number}までの合計は、{total}です</p>;
+      render(){
+        return <div style={this.style}></div>;
+      }
     }
 
     let el = (
       <div>
-        <Calc number="100"/>
-        <Calc number="200"/>
-        <Calc number="300"/>
+        <Rect x="100" y="100" w="100" h="100" c="cyan" />
+        <Rect x="150" y="150" w="100" h="100" c="magenta" />
       </div>
     );
     ReactDOM.render(el, dom);
