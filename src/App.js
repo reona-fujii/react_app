@@ -3,11 +3,7 @@ import Rect from './Rect';
 import './App.css';
 
 class App extends Component {
-
-data=[
-  "This is list sample.",
-  "これはリストのサンプルです"
-];
+input ="";
 
 msgStyle={
   fontSize:"20pt",
@@ -15,50 +11,60 @@ msgStyle={
   margin:"20px 0px",
   padding: "5px"
 }
-
-area = {
-  width:"500px",
-  height:"500px",
-  border:"1px solid blue"
+inputStyle = {
+  fontSize:"12pt",
+  padding:"5px"
 }
 
 constructor(props) {
   super(props);
   this.state={
-    list:this.data
+    message: 'type your name:'
   };
-  this.doAction=this.doAction.bind(this);
+  this.doChange = this.doChange.bind(this);
+  this.doSubmit = this.doSubmit.bind(this);
 }
 
-doAction(e){
-  let x = e.pageX;
-  let y = e.pageY;
-  this.data.push({x:x, y:y});
+doChange(event) {
+  this.input = event.target.value;
+}
+
+doSubmit(event) {
   this.setState({
-    list:this.data
+    message: 'Hello,' + this.input + '!!'
   });
+  event.preventDefault();
 }
 
-draw(d) {
-  let s = {
-    position:"absolute",
-    left:(d.x -25) + "px",
-    top:(d.y -25) + "px",
-    width:"50px",
-    height:"50px",
-    backgroundColor:"#66f3"
-  };
-  return <div style={s}></div>;
+doCheck(event) {
+  alert(event.target.value + "は長すぎます");
 }
-
 render(){
   return <div>
     <h1>React</h1>
-    <h2 style={this.msgStyle}>show rect.</h2>
-    <div style={this.area} onClick={this.doAction}>
-      {this.data.map((value)=>this.draw(value))}
-    </div>
-    </div>;
+    <h2>{this.state.message}</h2>
+    <Message maxlength="10" onCheck={this.doCheck} />
+  </div>;
+}
+}
+class Message extends Component {
+  inputStyle ={
+    fontSize:"12pt",
+    padding:"5px"
+  }
+  constructor(props){
+    super(props);
+    this.doChange=this.doChange.bind(this);
+  }
+  doChange(e){
+    if (e.target.value.length > this.props.maxlength) {
+      this.props.onCheck(e);
+      e.target.value=e.target.value.substr(0, this.props.maxlength);
+    }
+  }
+  render(){
+    return<input type="text" style={this.inputStyle}
+      onChange={this.doChange} />
   }
 }
 
