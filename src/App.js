@@ -1,71 +1,67 @@
 import React, {Component} from 'react';
 import Rect from './Rect';
 import './App.css';
+import { connect } from 'react-redux';
+
+function mappingState(state) {
+  return state;
+}
 
 class App extends Component {
-input ="";
-
-msgStyle={
-  fontSize:"20pt",
-  color:"#900",
-  margin:"20px 0px",
-  padding: "5px"
-}
-inputStyle = {
-  fontSize:"12pt",
-  padding:"5px"
-}
-
-constructor(props) {
-  super(props);
-  this.state={
-    message: 'type your name:'
-  };
-  this.doChange = this.doChange.bind(this);
-  this.doSubmit = this.doSubmit.bind(this);
+  constructor(props) {
+    super(props);
+  }
+  render(){
+    return (
+      <div>
+        <h1>Redux</h1>
+        <Message />
+        <Button />
+      </div>
+    );
+  }
 }
 
-doChange(event) {
-  this.input = event.target.value;
-}
+App = connect()(App);
 
-doSubmit(event) {
-  this.setState({
-    message: 'Hello,' + this.input + '!!'
-  });
-  event.preventDefault();
-}
-
-doCheck(event) {
-  alert(event.target.value + "は長すぎます");
-}
-render(){
-  return <div>
-    <h1>React</h1>
-    <h2>{this.state.message}</h2>
-    <Message maxlength="10" onCheck={this.doCheck} />
-  </div>;
-}
-}
 class Message extends Component {
-  inputStyle ={
-    fontSize:"12pt",
-    padding:"5px"
+  style = {
+    fontSize:"20pt",
+    padding: "20px 5px"
+  }
+  render(){
+    return (
+      <p style={this.style}>
+        {this.props.message}: {this.props.counter}
+      </p>
+    );
+  }
+}
+Message = connect(mappingState)(Message);
+
+class Button extends Component {
+  style = {
+    fontSize:"16pt",
+    padding:"5px 10px"
   }
   constructor(props){
     super(props);
-    this.doChange=this.doChange.bind(this);
+    this.doAction = this.doAction.bind(this);
   }
-  doChange(e){
-    if (e.target.value.length > this.props.maxlength) {
-      this.props.onCheck(e);
-      e.target.value=e.target.value.substr(0, this.props.maxlength);
+  doAction(e) {
+    if (e.shiftKey){
+      this.props.dispatch({type:'DECREMENT'});
+    }else {
+      this.props.dispatch({type:'INCREMENT'});
     }
   }
   render(){
-    return<input type="text" style={this.inputStyle}
-      onChange={this.doChange} />
+    return (
+      <button style={this.style}
+      onClick={this.doAction}>Click</button>
+    );
   }
 }
+Button=connect()(Button);
 
 export default App;
