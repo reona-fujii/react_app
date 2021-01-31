@@ -1,28 +1,32 @@
 import { createStore } from 'redux';
 
 const initData = {
-  data:[{message:'sample data', created: new Date()}],
-  message: 'please type message:',
-  mode: 'default',
+  data:[{message:'sample data', created:new Date()}],
+  message:'please type message:',
+  mode:'default',
   fdata:[]
 };
 
-//レデューサー
+// レデューサー
 export function memoReducer(state = initData, action) {
   switch (action.type) {
-    case 'Add':
+    case 'ADD':
       return addReduce(state, action);
-    case 'DeLETE':
+
+    case 'DELETE':
       return deleteReduce(state, action);
+
     case 'FIND':
       return findReduce(state, action);
+
     default:
       return state;
   }
 }
 
-//レデュースアクション
-//メモの追加のレデュース処理
+// レデュースアクション
+
+// メモ追加のレデュース処理
 function addReduce(state, action){
   let data = {
     message:action.message,
@@ -38,8 +42,8 @@ function addReduce(state, action){
   };
 }
 
-//メモの検索のレデュース処理
-function findReduce(state, action) {
+// メモ検索のレデュース処理
+function findReduce(state, action){
   let f = action.find;
   let fdata = [];
   state.data.forEach((value)=>{
@@ -55,20 +59,21 @@ function findReduce(state, action) {
   };
 }
 
-//メモ削除のレデュース処理
-function deleteReduce(state, action) {
+// メモ削除のレデュース処理
+function deleteReduce(state, action){
   let newdata = state.data.slice();
   newdata.splice(action.index, 1);
   return {
     data:newdata,
     message:'delete "' + action.index + '":',
-    mode: 'delete',
+    mode:'delete',
     fdata:[]
   }
 }
 
-//アクションクリエーター
-//メモの追加アクション
+// アクションクリエーター
+
+// メモ追加のアクション
 export function addMemo(text) {
   return {
     type: 'ADD',
@@ -76,7 +81,7 @@ export function addMemo(text) {
   }
 }
 
-//メモ削除のアクション
+// メモ削除のアクション
 export function deleteMemo(num) {
   return {
     type: 'DELETE',
@@ -84,7 +89,7 @@ export function deleteMemo(num) {
   }
 }
 
-//メモ検索のアクション
+// メモ検索のアクション
 export function findMemo(text) {
   return {
     type: 'FIND',
@@ -92,5 +97,5 @@ export function findMemo(text) {
   }
 }
 
-//ストアを作成
+// ストアを作成
 export default createStore(memoReducer);
