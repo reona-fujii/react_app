@@ -5,7 +5,7 @@ export default <style>
   body {
     margin: 10px;
     padding: 5px;
-    color: #669;
+    color: #660;
   }
   header {
     font-size: 64pt;
