@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Link from 'next/link';","map":{"version":3,"sources":["/Users/reona/Library/Mobile Documents/com~apple~CloudDocs/DMM/ReactDevelop/react_app/next_app/pages/other.js"],"names":["Link"],"mappings":"AAAA,OAAOA,IAAP,MAAiB,WAAjB","sourcesContent":["import Link from 'next/link';\n"]},"metadata":{},"sourceType":"module"}
