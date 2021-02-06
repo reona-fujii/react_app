@@ -1,41 +1,36 @@
 import {createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
+import firebase from "firebase";
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyCa6dAGQ9qoLu17TZGOP7YZQ43UpS0VNDA",
+    authDomain: "sample-app-97b76.firebaseapp.com",
+    databaseURL: "https://sample-app-97b76-default-rtdb.firebaseio.com",
+    projectId: "sample-app-97b76",
+    storageBucket: "sample-app-97b76.appspot.com",
+    messagingSenderId: "576321913666",
+    appId: "1:576321913666:web:30c88e9203d9acd67b3edb",
+    measurementId: "G-5KZ75ZK78E"
+  };
+  // Initialize Firebase
+  var fireapp;
+  // ページ移動で二重に呼び出される可能性があるため
+  // try構文を使ってエラーが発生してもそのまま処理を続行するようにする
+  try {
+  firebase.initializeApp(firebaseConfig);
+  } catch (error) {
+    console.log(error.message);
+  }
+  export default fireapp;
 
 // ステートの初期値
 const initial = {
-  message: 'ENTER',
-  data: [],
-  number:[],
-  result: 0
 }
 
-// レデューサー
-function counterReducer (state = initial, action) {
+function fireReducer(state = initial, action) {
   switch (action.type) {
-    // 計算実行
-    case 'ENTER':
-      let data2 = state.data.slice();
-      let s = action.value;
-      data2.unshift(s);
-      let num = s.replace(/[^0-9]/g,"");
-      let number2 = state.number.slice();
-      number2.unshift(num);
-      let result = (state.result * 1) + (num * 1);
-      return {
-        message: 'ENTER',
-        data: data2,
-        number: number2,
-        result: result
-      };
-    // リセット
-    case 'RESET':
-    return {
-      message: 'RESET',
-      data: [],
-      number: [],
-      result: 0
-    };
-    // デフォルト
+    case 'TESTACTION':
+      return state;
     default:
       return state;
   }
@@ -43,5 +38,5 @@ function counterReducer (state = initial, action) {
 
 // initStore関数
 export function initStore(state = initial) {
-  return createStore(calcReducer, state, applyMiddleware(thunkMiddleware))
+  return createStore(fireReducer, state, applyMiddleware(thunkMiddleware))
 }

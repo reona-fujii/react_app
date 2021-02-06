@@ -39,5 +39,26 @@ export default <style>
     color: #669;
     font-size: 16pt;
   }
+  hr {
+    margin: 25px 0px;
+  }
+  tr {
+    margin: 0px;
+  }
+  th {
+    font-size: 14pt;
+    font-weight: plain;
+    text-align: left;
+    padding: 0px 20px;
+    margin: 0px;
+    border-bottom: 1px solid grey;
+  }
+  td {
+    font-size: 14pt;
+    font-weight: plain;
+    text-align: right;
+    margin: 0px;
+    border-bottom: 1px solid grey;
+  }
   `}
 </style>;

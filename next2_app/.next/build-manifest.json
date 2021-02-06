@@ -29,10 +29,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/other": [
+    "/fire_find": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/other.js"
+      "static/chunks/pages/fire_find.js"
     ]
   },
   "ampFirstPages": []
