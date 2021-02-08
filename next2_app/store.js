@@ -17,7 +17,7 @@ import firebase from "firebase";
   // ページ移動で二重に呼び出される可能性があるため
   // try構文を使ってエラーが発生してもそのまま処理を続行するようにする
   try {
-  firebase.initializeApp(firebaseConfig);
+    fireapp = firebase.initializeApp(firebaseConfig);
   } catch (error) {
     console.log(error.message);
   }
@@ -25,12 +25,17 @@ import firebase from "firebase";
 
 // ステートの初期値
 const initial = {
+  login: false,
+  username: '(click here!)',
+  email: '',
+  data:[],
+  items:[]
 }
 
 function fireReducer(state = initial, action) {
   switch (action.type) {
-    case 'TESTACTION':
-      return state;
+    case 'UPDATE_USER':
+      return action.value;
     default:
       return state;
   }
